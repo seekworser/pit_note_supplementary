@@ -55,36 +55,39 @@ prob_P2_rho_d = np.trace(P_2 * rho_d_after_qwp)
 prob_P3_rho_d = np.trace(P_3 * rho_d_after_qwp)
 
 # output result
-print("#"*50 + "\n")
-print("rho:")
-print(rho)
-print("rho':")
-print(rho_d)
-print("unitary matrix representing pi/4 QWP")
-print(u_qwp)
-print("\n" + "#"*50 + "\n")
-print("after unitary operation")
-print("rho:")
-print(rho_after_qwp)
-print("rho_d:")
-print(rho_d_after_qwp)
-print("\n" + "#"*50 + "\n")
-
-print("probability for projection measurement with P1 (HH)")
-print("rho: {0.real:.5f}    rho':{1.real:.5f}".format(
-    prob_P1_rho,
-    prob_P1_rho_d
-))
-print("\n" + "#"*50 + "\n")
-print("probability for projection measurement with P2 (VV)")
-print("rho: {0.real:.5f}    rho':{1.real:.5f}".format(
-    prob_P2_rho,
-    prob_P2_rho_d
-))
-print("\n" + "#"*50 + "\n")
-print("probability for projection measurement with P3 (HV and VH)")
-print("rho: {0.real:.5f}    rho':{1.real:.5f}".format(
-    prob_P3_rho,
-    prob_P3_rho_d
-))
-print("\n" + "#"*50 + "\n")
+with open("result.txt", "w") as f:
+    lines = ([
+        "#"*50 + "\n",
+        ("rho:"),
+        (str(rho)),
+        ("rho':"),
+        (str(rho_d)),
+        ("unitary matrix representing pi/4 QWP"),
+        str(u_qwp),
+        ("\n" + "#"*50 + "\n"),
+        ("after unitary operation"),
+        ("rho:"),
+        (rho_after_qwp),
+        ("rho_d:"),
+        (rho_d_after_qwp),
+        ("\n" + "#"*50 + "\n"),
+        ("probability for projection measurement with P1 (HH)"),
+        ("rho: {0.real:.5f}    rho':{1.real:.5f}".format(
+            prob_P1_rho,
+            prob_P1_rho_d
+        )),
+        ("\n" + "#"*50 + "\n"),
+        ("probability for projection measurement with P2 (VV)"),
+        ("rho: {0.real:.5f}    rho':{1.real:.5f}".format(
+            prob_P2_rho,
+            prob_P2_rho_d
+        )),
+        ("\n" + "#"*50 + "\n"),
+        ("probability for projection measurement with P3 (HV and VH)"),
+        ("rho: {0.real:.5f}    rho':{1.real:.5f}".format(
+            prob_P3_rho,
+            prob_P3_rho_d
+        )),
+        ("\n" + "#"*50 + "\n"),
+    ])
+    f.writelines(["{}\n".format(line) for line in lines])
